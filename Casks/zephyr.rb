@@ -34,10 +34,10 @@ cask "zephyr" do
   # Settings → General. Those paths are root-owned, so Homebrew asks for a
   # password.
   zap launchctl: "com.bence.zephyr.helper",
-      trash:     "~/Library/Application Support/Zephyr",
       delete:    [
         "/Library/Application Support/Zephyr",
         "/Library/LaunchDaemons/com.bence.zephyr.helper.plist",
         "/var/log/zephyr-helper.log",
-      ]
+      ],
+      trash:     "~/Library/Application Support/Zephyr"
 end
