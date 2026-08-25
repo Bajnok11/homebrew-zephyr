@@ -1,6 +1,6 @@
 cask "zephyr" do
-  version "1.0.1"
-  sha256 "2c6cb4f286911b7bb29687ea54bb4df60b2c2572a2d1352a801b69dae61be9d2"
+  version "1.0.2"
+  sha256 "5fd997601006a4db9a523d269540d4cdb5a28469471ace337e6eb67427b65043"
 
   url "https://github.com/Bajnok11/Zephyr/releases/download/v#{version}/Zephyr-#{version}-arm64.zip"
   name "Zephyr"
