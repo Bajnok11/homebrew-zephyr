@@ -8,6 +8,12 @@ Homebrew tap for [Zephyr](https://github.com/Bajnok11/Zephyr) — a native macOS
 brew tap Bajnok11/zephyr
 ```
 
+Recent Homebrew versions refuse to run casks from a third-party tap until you say you trust it, so this step is needed once:
+
+```bash
+brew trust --cask Bajnok11/zephyr/zephyr
+```
+
 ```bash
 brew install --cask zephyr
 ```
