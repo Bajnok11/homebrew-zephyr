@@ -30,12 +30,10 @@ cask "zephyr" do
   # root-owned, so Homebrew will ask for your password.
   uninstall launchctl: "com.bence.zephyr.helper",
             delete:    [
-              "/Library/LaunchDaemons/com.bence.zephyr.helper.plist",
               "/Library/Application Support/Zephyr",
+              "/Library/LaunchDaemons/com.bence.zephyr.helper.plist",
               "/var/log/zephyr-helper.log",
             ]
 
-  zap trash: [
-    "~/Library/Application Support/Zephyr",
-  ]
+  zap trash: "~/Library/Application Support/Zephyr"
 end
