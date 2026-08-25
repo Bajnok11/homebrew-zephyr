@@ -33,10 +33,20 @@ If that trade-off doesn't sit right with you, the [main repo](https://github.com
 ## Uninstalling
 
 ```bash
-brew uninstall --cask zephyr
+brew zap --cask zephyr
 ```
 
-Fan control runs through a root LaunchDaemon that the app installs outside its own bundle, so the cask tears that down too. Homebrew will ask for your password for those paths. `--zap` additionally removes your presets and settings.
+Use `zap`, not plain `uninstall`. Fan control runs through a root LaunchDaemon that the app installs outside its own bundle, and only `zap` removes it — Homebrew runs the plain uninstall stanza on upgrades too, so tearing the daemon down there would switch fan control off every time the app updated. `brew uninstall --cask zephyr` removes just the app and leaves the helper running.
+
+You can also remove the helper from inside the app first: **Settings → General → Remove**.
+
+## Upgrading
+
+```bash
+brew upgrade --cask zephyr
+```
+
+The helper survives the upgrade. If the app then reports that the installed service is older than the app, press **Reinstall** in Settings → General once.
 
 ## Updating the cask for a new release
 

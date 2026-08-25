@@ -24,16 +24,20 @@ cask "zephyr" do
                    sudo: false
   end
 
-  # Fan control needs a root helper, which the app installs on first use into
-  # /Library. Dragging the app to the trash would leave that LaunchDaemon
-  # running forever, so uninstall tears it down properly. These paths are
-  # root-owned, so Homebrew will ask for your password.
-  uninstall launchctl: "com.bence.zephyr.helper",
-            delete:    [
-              "/Library/Application Support/Zephyr",
-              "/Library/LaunchDaemons/com.bence.zephyr.helper.plist",
-              "/var/log/zephyr-helper.log",
-            ]
+  uninstall quit: "com.bence.zephyr"
 
-  zap trash: "~/Library/Application Support/Zephyr"
+  # The root helper deliberately lives in zap, not uninstall. Homebrew runs the
+  # uninstall stanza on every *upgrade* as well, so tearing the LaunchDaemon
+  # down there would switch fan control off each time the app updates and leave
+  # the user needing a privileged reinstall they were never told about.
+  # `brew zap --cask zephyr` removes it, as does the Remove button in the app's
+  # Settings → General. Those paths are root-owned, so Homebrew asks for a
+  # password.
+  zap launchctl: "com.bence.zephyr.helper",
+      trash:     "~/Library/Application Support/Zephyr",
+      delete:    [
+        "/Library/Application Support/Zephyr",
+        "/Library/LaunchDaemons/com.bence.zephyr.helper.plist",
+        "/var/log/zephyr-helper.log",
+      ]
 end
