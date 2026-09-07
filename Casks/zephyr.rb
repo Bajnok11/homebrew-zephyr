@@ -19,9 +19,7 @@ cask "zephyr" do
   # one every unnotarized community cask makes, and it goes away if the project
   # ever moves to a $99/year Developer ID certificate.
   postflight_steps do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Zephyr.app"],
-                   sudo: false
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Zephyr.app"]
   end
 
   uninstall quit: "com.bence.zephyr"
