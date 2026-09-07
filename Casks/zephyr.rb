@@ -18,7 +18,7 @@ cask "zephyr" do
   # the quarantine flag here keeps the install working; the trade is the same
   # one every unnotarized community cask makes, and it goes away if the project
   # ever moves to a $99/year Developer ID certificate.
-  postflight do
+  postflight_steps do
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/Zephyr.app"],
                    sudo: false
